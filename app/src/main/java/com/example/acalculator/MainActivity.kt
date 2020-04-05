@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun onClickCalculation(symbol: String){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
         Toast.makeText(this,"setOnClickListener $horario",Toast.LENGTH_SHORT).show()
