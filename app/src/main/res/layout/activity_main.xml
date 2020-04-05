@@ -24,8 +24,13 @@
         android:orientation="horizontal"
         android:paddingBottom="5dp">
 
+        <ListView
+            android:id="@+id/list_historic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
         <Button
-            android:id="@+id/button_deleteAll"
+            android:id="@+id/button_CE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cinza"
@@ -33,7 +38,7 @@
             android:textColor="@color/branco" />
 
         <Button
-            android:id="@+id/button_menos"
+            android:id="@+id/button_backspace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/apagarUm"
@@ -127,7 +132,7 @@
             android:textColor="@color/branco"/>
 
         <Button
-            android:id="@+id/button_subtration"
+            android:id="@+id/button_menos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-"
@@ -212,7 +217,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_historico"
+            android:id="@+id/button_lastOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ultima Operação"

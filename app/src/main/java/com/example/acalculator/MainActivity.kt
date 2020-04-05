@@ -1,27 +1,44 @@
 package com.example.acalculator
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_expression.view.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+
+class HistoryAdapter(context: Context, private val layout: Int, items: ArrayList<String>) : ArrayAdapter<String>(context,layout,items){
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(layout,parent,false)
+        val expressionParts = getItem(position)?.split("=")
+        view.text_expression.text = expressionParts?.get(0)
+        view.text_result.text = expressionParts?.get(1)
+        return view
+    }
+}
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
     private  val VISOR_KEY = "visor"
-    var historico = ""
+    private var historico = ""
     private var horario = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG,"o método onCreate foi invocado")
         setContentView(R.layout.activity_main)
+        list_historic.adapter = HistoryAdapter(this, R.layout.item_expression, arrayListOf("1+1=2", "2+3=5"))
 
         //definir funcao dos botoes dos numeros
         button_1.setOnClickListener{ onClickSymbol("1") }
@@ -46,17 +63,19 @@ class MainActivity : AppCompatActivity() {
 
         button_adition.setOnClickListener { onClickCalculation("+") }
 
-        button_subtration.setOnClickListener { onClickCalculation ("-") }
+        button_menos.setOnClickListener { onClickCalculation ("-") }
 
         button_mult.setOnClickListener { onClickCalculation("*") }
 
         button_div.setOnClickListener { onClickCalculation("/") }
 
-        button_deleteAll.setOnClickListener { onClickDeleteAll() }
+        button_CE.setOnClickListener { onClickClearAll() }
+
+        button_backspace.setOnClickListener{ onClickClearOne() }
 
         button_equals.setOnClickListener { onClickEquals() }
 
-        button_historico.setOnClickListener { onClickHistorico() }
+        button_lastOne.setOnClickListener { onClickHistorico() }
     }
 
     override fun onDestroy() {
@@ -81,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         text_visor.append(symbol)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun onClickSymbol (symbol: String){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
         Toast.makeText(this,"onClickSymbol $horario",Toast.LENGTH_SHORT).show()
@@ -92,6 +112,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun onClickEquals(){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
         Toast.makeText(this,"button_equals.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
@@ -102,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG,"O resultado da expressão é ${text_visor.text}")
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun onClickHistorico(){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
         Toast.makeText(this,"button_historico.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
@@ -109,10 +131,23 @@ class MainActivity : AppCompatActivity() {
         text_visor.text = historico
     }
 
-    private fun onClickDeleteAll(){
+    @SuppressLint("SimpleDateFormat")
+    private fun onClickClearAll(){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
-        Toast.makeText(this,"button_deleteAll.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"button_CE.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
         Log.i(TAG, "Click no botão C")
         text_visor.text = "0"
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun onClickClearOne(){
+        horario = SimpleDateFormat("HH:mm:ss").format(Date())
+        Toast.makeText(this,"button_backspace.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
+        Log.i(TAG, "Click no botão <")
+        if(text_visor.text.length == 1){
+            text_visor.text = "0"
+        }else{
+            text_visor.text = text_visor.text.dropLast(1)
+        }
     }
 }
