@@ -2,20 +2,25 @@ package com.example.acalculator
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_expression.view.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
+const val EXTRA_HISTORICO = "com.example.acalculator.HIST"
 
 class HistoryAdapter(context: Context, private val layout: Int, items: ArrayList<String>) : ArrayAdapter<String>(context,layout,items){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -27,18 +32,23 @@ class HistoryAdapter(context: Context, private val layout: Int, items: ArrayList
     }
 }
 
+@Parcelize
+class Operation(val expression: String, val result: String):Parcelable
+
 class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
-    private  val VISOR_KEY = "visor"
+    private val VISOR_KEY = "visor"
     private var historico = ""
+    private var hist = ArrayList<Operation>()
+    private var list_historico = arrayListOf("1+1=2","2+3=5")
     private var horario = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG,"o método onCreate foi invocado")
         setContentView(R.layout.activity_main)
-        list_historic.adapter = HistoryAdapter(this, R.layout.item_expression, arrayListOf("1+1=2", "2+3=5"))
+        list_historic.adapter = HistoryAdapter(this, R.layout.item_expression, list_historico)
 
         //definir funcao dos botoes dos numeros
         button_1.setOnClickListener{ onClickSymbol("1") }
@@ -76,6 +86,13 @@ class MainActivity : AppCompatActivity() {
         button_equals.setOnClickListener { onClickEquals() }
 
         button_lastOne.setOnClickListener { onClickHistorico() }
+
+        button_historico.setOnClickListener{
+            val intent = Intent(this,Main2Activity::class.java)
+            intent.apply { putStringArrayListExtra(EXTRA_HISTORICO,list_historico) }
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onDestroy() {
@@ -120,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "Click no botão =")
         val expression = ExpressionBuilder(text_visor.text.toString()).build()
         text_visor.text = expression.evaluate().toString()
+        list_historico.add("$historico=${text_visor.text}")
         Log.i(TAG,"O resultado da expressão é ${text_visor.text}")
     }
 

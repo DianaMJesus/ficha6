@@ -223,5 +223,13 @@
             android:text="Ultima Operação"
             android:backgroundTint="@color/preto"
             android:textColor="@color/branco"/>
+
+        <Button
+            android:id="@+id/button_historico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Página Histórico"
+            android:backgroundTint="@color/preto"
+            android:textColor="@color/branco"/>
     </LinearLayout>
 </LinearLayout>
