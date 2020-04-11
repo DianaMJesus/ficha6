@@ -13,8 +13,8 @@ class Main2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val list = intent.getStringArrayListExtra(EXTRA_HISTORICO)
-        list_historico_page.adapter =HistoryAdapter(this,R.layout.item_expression,list)
+        val list = intent.getStringArrayListExtra(EXTRA_HISTORY)
+        //list_historico_page.adapter = HistoryAdapter(this,R.layout.item_expression,list)
 
         button_back.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
