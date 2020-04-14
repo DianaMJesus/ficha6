@@ -15,6 +15,10 @@ abstract class NavigationManager{
         fun goToCalculatorFragment(fm: FragmentManager){
             placeFragment(fm, CalculatorFragment())
         }
+
+        fun goToHistoryFragment(fm: FragmentManager){
+            placeFragment(fm, HistoryFragment())
+        }
     }
 
 

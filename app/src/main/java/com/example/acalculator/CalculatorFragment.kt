@@ -10,6 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import butterknife.ButterKnife
+import butterknife.OnClick
+import butterknife.Optional
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.text.SimpleDateFormat
@@ -20,17 +23,19 @@ const val EXTRA_HISTORY = "com.example.acalculator.HIST"
 class CalculatorFragment : Fragment() {
 
     private val TAG = MainActivity::class.java.simpleName
-    private val VISOR_KEY = "visor"
     private var historico = ""
     private var operations = arrayListOf<Operation>()
-    //private var list_history = arrayListOf("1+1=2","2+3=5")
     private var horario = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calculator, container, false)
+        val view = inflater.inflate(R.layout.fragment_calculator, container, false)
+        ButterKnife.bind(this,view)
+        return view
     }
 
+    @Optional
+    @OnClick(R.id.button_0, R.id.button_00,R.id.button_1, R.id.button_2, R.id.button_3, R.id.button_4, R.id.button_42, R.id.button_5,R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9, R.id.button_adition, R.id.button_div, R.id.button_point, R.id.button_mult, R.id.button_menos)
     @SuppressLint("SimpleDateFormat")
     fun onClickSymbol (view: View){
         var symbol = view.tag.toString()
@@ -44,6 +49,7 @@ class CalculatorFragment : Fragment() {
         }
     }
 
+    @OnClick(R.id.button_equals)
     @SuppressLint("SimpleDateFormat")
     fun onClickEquals(view: View){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
@@ -52,11 +58,11 @@ class CalculatorFragment : Fragment() {
         Log.i(TAG, "Click no botão =")
         val expression = ExpressionBuilder(text_visor.text.toString()).build()
         text_visor.text = expression.evaluate().toString()
-        //list_history.add("$historico=${text_visor.text}")
         operations.add(Operation(historico,text_visor.text.toString().toDouble()))
         Log.i(TAG,"O resultado da expressão é ${text_visor.text}")
     }
 
+    @OnClick(R.id.button_CE)
     @SuppressLint("SimpleDateFormat")
     fun onClickClearAll(view: View){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
@@ -65,6 +71,7 @@ class CalculatorFragment : Fragment() {
         text_visor.text = "0"
     }
 
+    @OnClick(R.id.button_backspace)
     @SuppressLint("SimpleDateFormat")
     fun onClickClearOne(view: View){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
@@ -77,27 +84,13 @@ class CalculatorFragment : Fragment() {
         }
     }
 
+    @OnClick(R.id.button_lastOne)
     @SuppressLint("SimpleDateFormat")
-    fun onClickHistorico(view: View){
+    fun onClickLastOperation(view: View){
         horario = SimpleDateFormat("HH:mm:ss").format(Date())
         Toast.makeText(activity as Context,"button_historico.setOnClickListener $horario", Toast.LENGTH_SHORT).show()
         Log.i(TAG, "Click no botão Historico")
         text_visor.text = historico
-    }
-
-    /*@SuppressLint("SimpleDateFormat")
-    fun onClickHistory(view: View){
-        horario = SimpleDateFormat("HH:mm:ss").format(Date())
-        Toast.makeText(this,"button_backspace.setOnClickListener $horario",Toast.LENGTH_SHORT).show()
-        Log.i(TAG, "Click no botão Historico Total")
-        val intent = Intent(this,Main2Activity::class.java)
-        intent.apply { putStringArrayListExtra(EXTRA_HISTORICO,list_historico) }
-        startActivity(intent)
-        finish()
-    }*/
-
-    fun onClickHistory(view: View){
-
     }
 
 }

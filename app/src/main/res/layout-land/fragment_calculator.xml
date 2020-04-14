@@ -26,10 +26,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"/>
 
-        <Button
-            android:id="@+id/button_historico"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +59,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="8"
                     android:text="@string/_8"/>
 
@@ -72,7 +67,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="9"
                     android:text="@string/_9"/>
 
@@ -81,7 +75,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickClearAll"
                     android:text="@string/ce"/>
 
                 <Button
@@ -89,7 +82,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickClearOne"
                     android:text="@string/apagarUm"/>
 
                 <Button
@@ -97,7 +89,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="/"
                     android:text="@string/barradividir"/>
             </LinearLayout>
@@ -114,7 +105,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="4"
                     android:text="@string/_4"/>
 
@@ -123,7 +113,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="5"
                     android:text="@string/_5"/>
 
@@ -132,7 +121,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="6"
                     android:text="@string/_6"/>
 
@@ -141,7 +129,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="7"
                     android:text="@string/_7"/>
 
@@ -150,7 +137,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="*"
                     android:text="@string/multi"/>
             </LinearLayout>
@@ -167,7 +153,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="1"
                     android:text="@string/_1"/>
 
@@ -176,7 +161,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="2"
                     android:text="@string/_2"/>
 
@@ -185,7 +169,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="3"
                     android:text="@string/_3"/>
 
@@ -194,7 +177,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="4"
                     android:text="@string/_4"/>
 
@@ -203,7 +185,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="-"
                     android:text="@string/menos"/>
             </LinearLayout>
@@ -220,7 +201,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="0"
                     android:text="@string/_0"/>
 
@@ -229,7 +209,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="00"
                     android:text="@string/_00"/>
 
@@ -238,7 +217,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="."
                     android:text="@string/ponto"/>
 
@@ -247,7 +225,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickEquals"
                     android:text="@string/equals"/>
 
                 <Button
@@ -255,7 +232,6 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:onClick="onClickSymbol"
                     android:tag="+"
                     android:text="@string/plus"/>
             </LinearLayout>
