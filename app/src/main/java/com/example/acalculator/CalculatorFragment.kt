@@ -28,12 +28,12 @@ class CalculatorFragment : Fragment(),OnDisplayChanged {
 
     private val TAG = MainActivity::class.java.simpleName
     private var historico = ""
-    private var operations = arrayListOf<Operation>()
     private var horario = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_calculator,container,false)
         viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
+        viewModel.display.let { view.text_visor.text = it }
         ButterKnife.bind(this, view)
         return view
     }

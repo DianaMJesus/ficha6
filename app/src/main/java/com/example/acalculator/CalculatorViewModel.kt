@@ -1,7 +1,6 @@
 package com.example.acalculator
 
 import androidx.lifecycle.ViewModel
-import com.google.android.material.navigation.NavigationView
 
 class CalculatorViewModel : ViewModel(){
     private val calculatorLogic = CalculatorLogic()

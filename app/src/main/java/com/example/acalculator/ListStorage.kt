@@ -6,7 +6,6 @@ import kotlinx.coroutines.withContext
 class ListStorage private constructor(){
     private val storage = mutableListOf<Operation>()
 
-
     companion object{
         private var instance: ListStorage? = null
 
@@ -28,7 +27,7 @@ class ListStorage private constructor(){
         }
     }
 
-    fun getAll(): List<Operation>{
-        return storage.toList()
+   fun getAll(): List<Operation>{
+       return storage.toList()
     }
 }

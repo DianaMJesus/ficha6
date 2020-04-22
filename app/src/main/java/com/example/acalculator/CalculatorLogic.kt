@@ -1,6 +1,5 @@
 package com.example.acalculator
 
-import android.view.Display
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
