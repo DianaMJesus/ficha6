@@ -27,13 +27,12 @@ class CalculatorFragment : Fragment(),OnDisplayChanged {
     private lateinit var viewModel: CalculatorViewModel
 
     private val TAG = MainActivity::class.java.simpleName
-    private var historico = ""
-    private var horario = ""
+    private var historico = "11"
+    private var horario = "22"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_calculator,container,false)
         viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
-        viewModel.display.let { view.text_visor.text = it }
         ButterKnife.bind(this, view)
         return view
     }
@@ -64,25 +63,13 @@ class CalculatorFragment : Fragment(),OnDisplayChanged {
     }
 
     @OnClick(R.id.button_CE)
-    @SuppressLint("SimpleDateFormat")
     fun onClickClearAll(view: View){
-        horario = SimpleDateFormat("HH:mm:ss").format(Date())
-        Toast.makeText(activity as Context,"button_CE.setOnClickListener $horario", Toast.LENGTH_SHORT).show()
-        Log.i(TAG, "Click no botão C")
-        text_visor.text = "0"
+        viewModel.onClickClearAll()
     }
 
     @OnClick(R.id.button_backspace)
-    @SuppressLint("SimpleDateFormat")
     fun onClickClearOne(view: View){
-        horario = SimpleDateFormat("HH:mm:ss").format(Date())
-        Toast.makeText(activity as Context,"button_backspace.setOnClickListener $horario", Toast.LENGTH_SHORT).show()
-        Log.i(TAG, "Click no botão <")
-        if(text_visor.text.length == 1){
-            text_visor.text = "0"
-        }else{
-            text_visor.text = text_visor.text.dropLast(1)
-        }
+        viewModel.onClickClearOne()
     }
 
     @OnClick(R.id.button_lastOne)

@@ -1,5 +1,7 @@
 package com.example.acalculator
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class CalculatorViewModel : ViewModel(){
@@ -8,6 +10,7 @@ class CalculatorViewModel : ViewModel(){
     var display: String = ""
 
     private fun notifyOnDisplayChanged(){
+        Log.i(TAG,"display: $display")
         listener?.onDisplayChanged(display)
     }
 
@@ -28,6 +31,16 @@ class CalculatorViewModel : ViewModel(){
     fun onClickEquals(){
         val result = calculatorLogic.performOperation(display)
         display = result.toString()
+        notifyOnDisplayChanged()
+    }
+
+    fun onClickClearAll(){
+        display = "0"
+        notifyOnDisplayChanged()
+    }
+
+    fun onClickClearOne(){
+        display = calculatorLogic.deleteSymbol(display)
         notifyOnDisplayChanged()
     }
 }

@@ -21,4 +21,12 @@ class CalculatorLogic{
         }
         return result
     }
+
+    fun deleteSymbol(display: String):String{
+        if(display.length == 1){
+            return "0"
+        }else{
+            return display.dropLast(1)
+        }
+    }
 }

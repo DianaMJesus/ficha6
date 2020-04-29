@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_expression.view.*
 
 
-class HistoryAdapter(private val context: Context, private val layout: Int, private val items: MutableList<Operation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
+class HistoryAdapter(private val context: Context, private val layout: Int, private val items: List<Operation>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
-    class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val expression: TextView = view.text_expression
         val result: TextView = view.text_result
     }

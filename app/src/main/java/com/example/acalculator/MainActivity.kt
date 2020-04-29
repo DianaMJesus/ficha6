@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         Log.i(TAG,"o método onCreate foi invocado")
         setContentView(R.layout.activity_main)
-        NavigationManager.goToCalculatorFragment(supportFragmentManager)
         setSupportActionBar(toolbar)
 
         setupDrawerMenu()

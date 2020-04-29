@@ -17,17 +17,23 @@ class ListStorage private constructor(){
                 return instance as ListStorage
             }
         }
-
     }
 
     suspend fun insert(operation: Operation){
         withContext(Dispatchers.IO){
-            Thread.sleep(30000)
+            Thread.sleep(1000)
             storage.add(operation)
         }
     }
 
    fun getAll(): List<Operation>{
        return storage.toList()
+    }
+
+    suspend fun delete(operation: Operation){
+        withContext(Dispatchers.IO){
+            Thread.sleep(1000)
+            storage.remove(operation)
+        }
     }
 }
