@@ -43,4 +43,6 @@ class CalculatorViewModel : ViewModel(){
         display = calculatorLogic.deleteSymbol(display)
         notifyOnDisplayChanged()
     }
+
+
 }

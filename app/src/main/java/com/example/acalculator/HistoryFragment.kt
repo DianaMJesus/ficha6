@@ -1,7 +1,6 @@
 package com.example.acalculator
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.view.*
 
-class HistoryFragment : Fragment(), HistoryAdapter.OnNoteListener {
+class HistoryFragment : Fragment(), ItemOnClickListener,OnHistoricChanged {
     private lateinit var viewModel: HistoryViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,10 +22,23 @@ class HistoryFragment : Fragment(), HistoryAdapter.OnNoteListener {
         return view
     }
 
-    override fun onNoteClick(position: Int) {
-        val posicao = viewModel.historyItems.get(position)
-        Toast.makeText(activity as Context,"Clicou no botão do historico e posicao $posicao", Toast.LENGTH_SHORT).show()
+    override fun onStart() {
+        viewModel.registerListener(this)
+        super.onStart()
     }
 
+    override fun onHistoricChanged(historic: List<Operation>) {
+        historic.let { }
+    }
+
+    override fun onDestroy() {
+        viewModel.unregisterListener()
+        super.onDestroy()
+    }
+
+    override fun onItemClick(items: Operation, position: Int) {
+        viewModel.onClick(items,position)
+        Toast.makeText(activity as Context, "id: ${items.uuid}", Toast.LENGTH_SHORT).show()
+    }
 
 }

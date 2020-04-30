@@ -9,31 +9,33 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_expression.view.*
 
 
-class HistoryAdapter(private val context: Context, private val layout: Int, private val items: List<Operation>, private val mOnNoteListener: OnNoteListener) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
+class HistoryAdapter(private val context: Context, private val layout: Int, private val items: List<Operation>, private val clickListener: ItemOnClickListener) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
-    class HistoryViewHolder(view: View, onNoteListener: OnNoteListener) : RecyclerView.ViewHolder(view),View.OnClickListener {
+    class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val expression: TextView = view.text_expression
         val result: TextView = view.text_result
-        val onNoteListene: OnNoteListener = onNoteListener
 
-        override fun onClick(view: View?) {
-            onNoteListene.onNoteClick(adapterPosition)
+        fun initialize(items: Operation, action: ItemOnClickListener){
+            expression.text = items.expression
+            result.text = items.result.toString()
+            itemView.setOnClickListener{
+                action.onItemClick(items,adapterPosition)
+            }
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return HistoryViewHolder(LayoutInflater.from(context).inflate(layout,parent,false),mOnNoteListener)
+        return HistoryViewHolder(LayoutInflater.from(context).inflate(layout,parent,false))
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.expression.text = items[position].expression
-        holder.result.text = items[position].result.toString()
+        /*holder.expression.text = items[position].expression
+        holder.result.text = items[position].result.toString()*/
+        holder.initialize(items[position],clickListener)
     }
 
     override fun getItemCount() = items.size
 
-    interface OnNoteListener{
-        fun onNoteClick(position: Int)
-    }
 
 }
